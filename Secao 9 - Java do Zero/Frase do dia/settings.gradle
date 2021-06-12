@@ -1,0 +1,2 @@
+rootProject.name = "Frase do dia projeto"
+include ':app'
