@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.Random;
 
@@ -28,15 +29,16 @@ public class MainActivity extends AppCompatActivity {
         this.opcaoSelecionada("tesoura");
     }
 
-    public void opcaoSelecionada(String opcaoSelecionada){
+    public void opcaoSelecionada(String escolhaUsuario){
         ImageView imgResultado = findViewById(R.id.imgResultado);
+        TextView txtResultado = findViewById(R.id.txtVencedor);
 
         int numero = new Random().nextInt(3);
 
         String[] opcoes = {"pedra", "papel", "tesoura"};
-        String opcaoApp = opcoes[numero];
+        String escolhaApp = opcoes[numero];
 
-        switch (opcaoApp){
+        switch (escolhaApp){
             case "pedra":
                 imgResultado.setImageResource(R.drawable.pedra);
                 break;
@@ -48,7 +50,24 @@ public class MainActivity extends AppCompatActivity {
             case "tesoura":
                 imgResultado.setImageResource(R.drawable.tesoura);
                 break;
-            default:
+        }
+
+        if (
+            (escolhaApp == "tesoura" && escolhaUsuario == "papel") ||
+            (escolhaApp == "papel" && escolhaUsuario == "pedra") ||
+            (escolhaApp == "pedra" && escolhaUsuario == "tesoura")){
+
+            txtResultado.setText("Você perdeu :(");
+
+        }else if(
+                (escolhaUsuario == "tesoura" && escolhaApp == "papel") ||
+                (escolhaUsuario == "papel" && escolhaApp == "pedra") ||
+                (escolhaUsuario == "pedra" && escolhaApp == "tesoura")){
+
+            txtResultado.setText("Você ganhou!! :)");
+
+        }else{
+            txtResultado.setText("Empataou!! :/");
         }
 
     }
