@@ -53,6 +53,31 @@
         android:layout_height="wrap_content"
         android:text="Vermelho" />
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sexo"
+        android:textSize="20sp" />
+
+    <RadioGroup
+        android:id="@+id/opcSexo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/radioButtonMasculino"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Masculino" />
+
+        <RadioButton
+            android:id="@+id/radioButtonFeminino"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Feminino" />
+    </RadioGroup>
+
     <Button
         android:id="@+id/btnEnviar"
         android:layout_width="match_parent"
@@ -73,4 +98,5 @@
         android:layout_height="wrap_content"
         android:text="Resultado"
         android:textSize="20sp" />
+
 </LinearLayout>
