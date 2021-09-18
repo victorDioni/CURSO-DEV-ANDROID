@@ -1,10 +1,12 @@
-package dionizio.victor.recyclerview;
+package dionizio.victor.recyclerview.activity.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+
+import dionizio.victor.recyclerview.R;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -17,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView    = findViewById(R.id.recyclerView);
 
         //CONFIGURAR ADAPTER
-        
+
 
         //CONFIGURAR RECYCLERVIEW
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
