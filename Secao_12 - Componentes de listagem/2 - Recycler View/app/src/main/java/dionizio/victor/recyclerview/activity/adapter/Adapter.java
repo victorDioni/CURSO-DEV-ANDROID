@@ -8,9 +8,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 import dionizio.victor.recyclerview.R;
+import dionizio.victor.recyclerview.activity.model.Filme;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
+    private  List<Filme> listaFilmes;
+    public Adapter(List<Filme> lista) {
+        this.listaFilmes = lista;
+    }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -22,14 +30,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.titulo.setText("Titulo de teste");
-        holder.ano.setText("2017");
-        holder.genero.setText("Comédia");
+        Filme filme = listaFilmes.get(position);
+        holder.titulo.setText(filme.getTituloFilme());
+        holder.ano.setText(filme.getAno());
+        holder.genero.setText(filme.getGenero());
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return listaFilmes.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{

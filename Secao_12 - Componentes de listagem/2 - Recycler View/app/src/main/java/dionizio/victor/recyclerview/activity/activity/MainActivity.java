@@ -1,10 +1,12 @@
 package dionizio.victor.recyclerview.activity.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +30,13 @@ public class MainActivity extends AppCompatActivity {
         this.criarFilmes();
 
         //CONFIGURAR ADAPTER
-        Adapter adapter = new Adapter();
+        Adapter adapter = new Adapter(listasFilmes);
 
         //CONFIGURAR RECYCLERVIEW
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
         recyclerView.setAdapter(adapter);
     }
 
@@ -63,6 +66,15 @@ public class MainActivity extends AppCompatActivity {
         this.listasFilmes.add(filme);
 
         filme = new Filme("Carros 3", "Comédia", "2017");
+        this.listasFilmes.add(filme);
+
+        filme = new Filme("Pantera Negra", "Aventura/Ficção", "2017");
+        this.listasFilmes.add(filme);
+
+        filme = new Filme("Hulk", "Aventura/Ficção", "2014");
+        this.listasFilmes.add(filme);
+
+        filme = new Filme("Thor", "Aventura/Ficçã", "2014");
         this.listasFilmes.add(filme);
     }
 }
