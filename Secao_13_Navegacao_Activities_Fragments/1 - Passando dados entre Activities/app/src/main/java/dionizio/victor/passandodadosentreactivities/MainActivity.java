@@ -24,8 +24,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SegundaActivity2.class);
 
+                // ENVIANDO DADOS DE UM OBJETO PARA OUTRA ACTIVITY
+                Usuario usuario = new Usuario("Viutabala", "vitubala@gmai.com");
+
                 intent.putExtra("nome", "Vitubala");
                 intent.putExtra("idade", 23);
+                intent.putExtra("usuario", usuario);
 
                 startActivity(intent);
             }
