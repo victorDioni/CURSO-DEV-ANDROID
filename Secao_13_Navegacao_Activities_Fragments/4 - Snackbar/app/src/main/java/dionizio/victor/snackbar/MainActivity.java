@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         btnSnackbar.setText("Botão abrir alterado");
                     }
-                }).show();
+                }).setTextColor(getResources().getColor(R.color.purple_200)) .show();
             }
         });
     }
