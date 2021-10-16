@@ -4,8 +4,22 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_13_Navegacao_Activities_Fragments/7 - ATM/app/src/main/res/drawable/degrade_fundo_navegacao.xml" value="0.2203125" />
+        <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_13_Navegacao_Activities_Fragments/7 - ATM/app/src/main/res/drawable/ic_menu_clientes.xml" value="0.2203125" />
+        <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_13_Navegacao_Activities_Fragments/7 - ATM/app/src/main/res/drawable/ic_menu_contatos.xml" value="0.2203125" />
+        <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_13_Navegacao_Activities_Fragments/7 - ATM/app/src/main/res/drawable/ic_menu_principal.xml" value="0.2203125" />
+        <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_13_Navegacao_Activities_Fragments/7 - ATM/app/src/main/res/drawable/ic_menu_servicos.xml" value="0.2203125" />
+        <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_13_Navegacao_Activities_Fragments/7 - ATM/app/src/main/res/drawable/ic_menu_sobre.xml" value="0.2203125" />
         <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_13_Navegacao_Activities_Fragments/7 - ATM/app/src/main/res/drawable/side_nav_bar.xml" value="0.2203125" />
+        <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_13_Navegacao_Activities_Fragments/7 - ATM/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_13_Navegacao_Activities_Fragments/7 - ATM/app/src/main/res/layout/app_bar_main.xml" value="0.25" />
+        <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_13_Navegacao_Activities_Fragments/7 - ATM/app/src/main/res/layout/fragment_clientes.xml" value="0.33" />
+        <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_13_Navegacao_Activities_Fragments/7 - ATM/app/src/main/res/layout/fragment_gallery.xml" value="0.20416666666666666" />
+        <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_13_Navegacao_Activities_Fragments/7 - ATM/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_13_Navegacao_Activities_Fragments/7 - ATM/app/src/main/res/layout/fragment_principal.xml" value="0.20416666666666666" />
+        <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_13_Navegacao_Activities_Fragments/7 - ATM/app/src/main/res/layout/fragment_servicos.xml" value="0.33" />
         <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_13_Navegacao_Activities_Fragments/7 - ATM/app/src/main/res/layout/nav_header_main.xml" value="0.25" />
+        <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_13_Navegacao_Activities_Fragments/7 - ATM/app/src/main/res/menu/activity_main_drawer.xml" value="0.20416666666666666" />
+        <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_13_Navegacao_Activities_Fragments/7 - ATM/app/src/main/res/menu/main.xml" value="0.1" />
       </map>
     </option>
   </component>
