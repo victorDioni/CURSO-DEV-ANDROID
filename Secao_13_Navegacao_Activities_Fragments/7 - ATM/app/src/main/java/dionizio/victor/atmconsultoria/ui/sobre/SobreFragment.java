@@ -22,19 +22,7 @@ public class SobreFragment extends Fragment {
                              Bundle savedInstanceState) {
         return new AboutPage(getActivity())
                 .setImage(R.drawable.logo)
-
-                .addGroup("Entre em contato")
-                .addEmail("atendimento@atmconsultoria.com.br", "Envie um e-mail")
-                .addWebsite("https://www.google.com/", "Acesse nosso site")
-
-                .addGroup("Redes Sociais")
-                .addFacebook("victor.dionizio.3", "Facebook")
-                .addInstagram("dionizio.v","Instagram")
-                .addTwitter("https://twitter.com","Twiter")
-                .addYoutube("https://www.youtube.com/","Youtube")
-                .addGitHub("victorDioni","GitHub")
-                .addPlayStore("tv.twitch.android.app","Download App")
-
                 .create();
+
     }
 }
