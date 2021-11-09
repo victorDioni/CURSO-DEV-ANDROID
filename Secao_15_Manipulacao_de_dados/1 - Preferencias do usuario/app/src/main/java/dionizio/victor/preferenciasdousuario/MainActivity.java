@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     private TextInputEditText editNome;
     private TextView txtResultado;
     private static final String ARQUIVO_PREFERENCIA = "ArquivoPreferencia";
-    String nome = editNome.getText().toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +34,12 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
 
                 // Validar o nome
-                if(nome.equals("")){
+                if(editNome.getText().toString().equals("")){
                     Toast.makeText(getApplicationContext(),
                             "Preencha o nome", Toast.LENGTH_LONG).show();
                 }else{
                     // Salvando dado
+                    String nome = editNome.getText().toString();
                     editor.putString("nome", nome);
                     editor.commit();
                     txtResultado.setText("Olá " + nome);
