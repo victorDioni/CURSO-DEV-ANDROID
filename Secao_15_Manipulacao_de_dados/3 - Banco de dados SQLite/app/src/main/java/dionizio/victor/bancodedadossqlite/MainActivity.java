@@ -20,31 +20,40 @@ public class MainActivity extends AppCompatActivity {
             SQLiteDatabase bancoDados = openOrCreateDatabase("Banco de dados SQLite", MODE_PRIVATE, null);
 
             // Criar tabela
-            bancoDados.execSQL("CREATE TABLE IF NOT EXISTS pessoas (nome VARCHAR, idade INT(3))");
+            bancoDados.execSQL("CREATE TABLE IF NOT EXISTS pessoas (id INTEGER PRIMARY KEY AUTOINCREMENT" +
+                    ", nome VARCHAR, idade INT(3))");
+
+            // Apagar tabela
+//            bancoDados.execSQL("DROP TABLE pessoas");
 
             // Inserir dados na tabela
-//            bancoDados.execSQL("INSERT INTO pessoas (nome, idade) VALUES ('Victor', 23)");
+//            bancoDados.execSQL("INSERT INTO pessoas (nome, idade) VALUES ('Mario', 23)");
 //            bancoDados.execSQL("INSERT INTO pessoas (nome, idade) VALUES ('Maria', 32)");
-//            bancoDados.execSQL("INSERT INTO pessoas (nome, idade) VALUES ('Pedro', 50)");
-//            bancoDados.execSQL("INSERT INTO pessoas (nome, idade) VALUES ('Mariana', 18)");
+
+            //Atualizando dados
+//            bancoDados.execSQL("UPDATE pessoas SET idade = 19 WHERE nome = 'Mariana'");
 
 //            String consulta =
 //                    "SELECT nome, idade  FROM pessoas WHERE nome IN ('Maria', 'Victor')";
 
             String consulta =
-                    "SELECT nome, idade  FROM pessoas WHERE nome BETWEEN 18 AND 35";
+                    "SELECT id, nome, idade  FROM pessoas WHERE 1=1";
 
             // Recuperar pessoas
             Cursor cursor = bancoDados.rawQuery(consulta, null);
 
             // Indices da tabela
+            int indiceID  = cursor.getColumnIndex("id");
             int indiceNome  = cursor.getColumnIndex("nome");
             int indiceIdade = cursor.getColumnIndex("idade");
 
             cursor.moveToFirst();
             while(cursor != null){
-                Log.i("RESULTADO - nome ", cursor.getString(indiceNome));
-                Log.i("RESULTADO - idade ", cursor.getString(indiceIdade));
+                String id = cursor.getString(indiceID);
+                String nome = cursor.getString(indiceNome);
+                String idade = cursor.getString(indiceIdade);
+
+                Log.i("RESULTADO - id ",  id + " | nome " + nome + " | idade " + idade);
                 cursor.moveToNext();
             }
 
