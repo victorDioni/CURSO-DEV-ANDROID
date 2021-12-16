@@ -36,10 +36,11 @@ public class DBHelper extends SQLiteOpenHelper {
     // Método chamado quando atualizamos o nosso app e publicamos novamente
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        String sql = "ALTER TABLE " + TABELA_TAREFAS + " ADD COLUMN status VARCHAR(1)";
+        String sql = "DROP TABLE IF EXISTS " + TABELA_TAREFAS + ";";
 
         try{
             sqLiteDatabase.execSQL(sql);
+            onCreate(sqLiteDatabase);
             Log.i("INFO DB", "Sucesso ao atualizar app");
         }catch (Exception e){
             Log.i("INFO DB", "Erro ao atualizar app " + e.getMessage());

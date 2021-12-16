@@ -1,5 +1,6 @@
 package dionizio.victor.listadetarefas.activity;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import dionizio.victor.listadetarefas.R;
 import dionizio.victor.listadetarefas.adapter.TarefaAdapter;
 import dionizio.victor.listadetarefas.databinding.ActivityMainBinding;
+import dionizio.victor.listadetarefas.helper.DBHelper;
 import dionizio.victor.listadetarefas.helper.RecyclerItemClickListener;
 import dionizio.victor.listadetarefas.model.Tarefa;
 
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Configurar recycler
         recyclerView = findViewById(R.id.recyclerViewListaTarefas);
+
 
         //Adicionar evento de clique
         recyclerView.addOnItemTouchListener(
