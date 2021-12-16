@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 
 import androidx.navigation.NavController;
@@ -18,10 +19,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import dionizio.victor.listadetarefas.R;
 import dionizio.victor.listadetarefas.adapter.TarefaAdapter;
 import dionizio.victor.listadetarefas.databinding.ActivityMainBinding;
+import dionizio.victor.listadetarefas.helper.RecyclerItemClickListener;
 import dionizio.victor.listadetarefas.model.Tarefa;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +51,32 @@ public class MainActivity extends AppCompatActivity {
 //        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
+        //Configurar recycler
         recyclerView = findViewById(R.id.recyclerViewListaTarefas);
+
+        //Adicionar evento de clique
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        getApplicationContext(),
+                        recyclerView,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Log.i("clique", "onItemClick");
+                    }
+
+                    @Override
+                    public void onLongItemClick(View view, int position) {
+                        Log.i("clique", "onLongItemClick");
+                    }
+
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                    }
+                }
+                )
+        );
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
