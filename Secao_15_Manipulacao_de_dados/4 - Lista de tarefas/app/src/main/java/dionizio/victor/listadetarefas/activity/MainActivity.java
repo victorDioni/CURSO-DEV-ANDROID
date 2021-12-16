@@ -22,6 +22,7 @@ import dionizio.victor.listadetarefas.adapter.TarefaAdapter;
 import dionizio.victor.listadetarefas.databinding.ActivityMainBinding;
 import dionizio.victor.listadetarefas.helper.DBHelper;
 import dionizio.victor.listadetarefas.helper.RecyclerItemClickListener;
+import dionizio.victor.listadetarefas.helper.TarefaDAO;
 import dionizio.victor.listadetarefas.model.Tarefa;
 
 import android.view.Menu;
@@ -93,9 +94,8 @@ public class MainActivity extends AppCompatActivity {
     public void carregarListaTarefas(){
 
         //Listar tarefas
-        Tarefa tf1 = new Tarefa();
-        tf1.setNomeTarefa("Ir ao mercado");
-        listaTarefas.add(tf1);
+        TarefaDAO tarefaDAO = new TarefaDAO(getApplicationContext());
+        listaTarefas = tarefaDAO.listar();
 
         //Exibie lista de tarefas no RecyclerView
 
