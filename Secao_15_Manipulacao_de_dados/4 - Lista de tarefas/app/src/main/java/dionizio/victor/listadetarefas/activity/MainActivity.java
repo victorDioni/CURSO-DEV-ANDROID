@@ -50,10 +50,6 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.toolbar);
 
-//        NavController navController = Navigation.findNavController(this, R.id.recyclerViewListaTarefas);
-//        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-//        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
         //Configurar recycler
         recyclerView = findViewById(R.id.recyclerViewListaTarefas);
 
@@ -66,7 +62,14 @@ public class MainActivity extends AppCompatActivity {
                         new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        Log.i("clique", "onItemClick");
+                        // Recuperar tarefa para editar
+                        Tarefa tarefaSelecionada = listaTarefas.get(position);
+
+                        // Envia tarefa para tela adicionar tarefa
+                        Intent intent = new Intent(MainActivity.this, AdicionarTarefaActivity.class);
+                        intent.putExtra("tarefaSelecionada", tarefaSelecionada);
+
+                        startActivity(intent);
                     }
 
                     @Override
@@ -137,11 +140,4 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
-//    public boolean onSupportNavigateUp() {
-//        NavController navController = Navigation.findNavController(this, R.id.recyclerViewListaTarefas);
-//        return NavigationUI.navigateUp(navController, appBarConfiguration)
-//                || super.onSupportNavigateUp();
-//    }
 }
