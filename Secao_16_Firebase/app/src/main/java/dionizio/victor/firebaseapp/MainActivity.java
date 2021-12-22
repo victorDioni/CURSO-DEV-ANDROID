@@ -29,22 +29,32 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        DatabaseReference usuarios = reference.child("usuarios");
+
+        Usuario usuario = new Usuario();
+        usuario.setNome("José Renato");
+        usuario.setSobrenome("Silva");
+        usuario.setIdade(23);
+
+        //Gerando identificador unico
+        usuarios.push().setValue(usuario);
+
         // Deslogar usuario
 //        usuario.signOut();
 
         //Logar usuario
-        usuario.signInWithEmailAndPassword(
-                "victor2@gmail.com", "vic12345")
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Log.i("signIn", "Sucesso ao logar usuário");
-                                }else{
-                                    Log.i("signIn", "Erro ao logar usuário");
-                                }
-                    }
-                });
+//        usuario.signInWithEmailAndPassword(
+//                "victor2@gmail.com", "vic12345")
+//                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if(task.isSuccessful()){
+//                            Log.i("signIn", "Sucesso ao logar usuário");
+//                                }else{
+//                                    Log.i("signIn", "Erro ao logar usuário");
+//                                }
+//                    }
+//                });
 
         // Verifica usuario logado
 //        if(usuario.getCurrentUser() != null){
