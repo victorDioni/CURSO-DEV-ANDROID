@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -73,10 +75,24 @@ public class MainActivity extends AppCompatActivity {
                 // Define nós para o storage
                 StorageReference storageReference  = FirebaseStorage.getInstance().getReference();
                 StorageReference imagens = storageReference.child("imagens");
-                StorageReference imagemRef = imagens.child("bfa3cc6c-df35-40bc-8716-79439c50cd83.jpeg");
+                StorageReference imagemRef = imagens.child("celular.jpeg");
+
+                // Baixar imagem
+                imagemRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Glide.with(MainActivity.this)
+                                .load(uri)
+                                .into(imgCelular);
+                        Toast.makeText(MainActivity.this,
+                                "Sucesso ao carregar foto: ",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
+
 
                 // Deletar arquivos
-                imagemRef.delete().addOnFailureListener(MainActivity.this, new OnFailureListener() {
+                /*imagemRef.delete().addOnFailureListener(MainActivity.this, new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(MainActivity.this,
@@ -90,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                                 "Sucesso ao deletar: ",
                                 Toast.LENGTH_LONG).show();
                     }
-                });
+                });*/
 
                 // Nome da imagem
                /* String nomeArquivo = UUID.randomUUID().toString();
