@@ -14,6 +14,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,13 +32,33 @@ public class MainActivity extends AppCompatActivity {
 
         DatabaseReference usuarios = reference.child("usuarios");
 
-        Usuario usuario = new Usuario();
-        usuario.setNome("José Renato");
-        usuario.setSobrenome("Silva");
-        usuario.setIdade(23);
+//        DatabaseReference usuarioPesquisa = usuarios.child("-MrYkfWv77eMWHqhtvbO");
+//        Query usuarioPesquisa = usuarios.orderByChild("nome").equalTo("Victor");
+//        Query usuarioPesquisa = usuarios.orderByKey().limitToFirst(2);
+        Query usuarioPesquisa = usuarios.orderByKey().limitToLast(2);
+        usuarioPesquisa.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                Usuario dadosUsuario = snapshot.getValue(Usuario.class);
+//                Log.i("Dados usuarios", "nome: " + dadosUsuario.getNome());
+                Log.i("Dados usuarios", snapshot.getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+//        Usuario usuario = new Usuario();
+//        usuario.setNome("Paula");
+//        usuario.setSobrenome("Lima");
+//        usuario.setIdade(20);
 
         //Gerando identificador unico
-        usuarios.push().setValue(usuario);
+//        usuarios.push().setValue(usuario);
 
         // Deslogar usuario
 //        usuario.signOut();
