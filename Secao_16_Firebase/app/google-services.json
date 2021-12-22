@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "599000121522",
+    "firebase_url": "https://fir-app-89190-default-rtdb.firebaseio.com",
+    "project_id": "fir-app-89190",
+    "storage_bucket": "fir-app-89190.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:599000121522:android:ed590cf135b1c976ad09ab",
+        "android_client_info": {
+          "package_name": "dionizio.victor.firebaseapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "599000121522-4futj1ivaubvjo59o5kc7o9fei318d2j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dionizio.victor.firebaseapp",
+            "certificate_hash": "ed772ac4e8fbd9c34ea70cabb57a9aba5c9ba625"
+          }
+        },
+        {
+          "client_id": "599000121522-vnfqe99skvrqae18fmqtocccuh06rnj9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAOa1JJMuqu30smrF2VxtH_9OY18pfxSY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "599000121522-vnfqe99skvrqae18fmqtocccuh06rnj9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
