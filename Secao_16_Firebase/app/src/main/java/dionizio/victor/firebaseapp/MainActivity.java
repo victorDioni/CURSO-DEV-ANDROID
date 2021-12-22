@@ -73,9 +73,27 @@ public class MainActivity extends AppCompatActivity {
                 // Define nós para o storage
                 StorageReference storageReference  = FirebaseStorage.getInstance().getReference();
                 StorageReference imagens = storageReference.child("imagens");
+                StorageReference imagemRef = imagens.child("bfa3cc6c-df35-40bc-8716-79439c50cd83.jpeg");
+
+                // Deletar arquivos
+                imagemRef.delete().addOnFailureListener(MainActivity.this, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(MainActivity.this,
+                                "Erro ao deletar: " + e.getMessage().toString(),
+                                Toast.LENGTH_LONG).show();
+                    }
+                }).addOnSuccessListener(MainActivity.this, new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(MainActivity.this,
+                                "Sucesso ao deletar: ",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
 
                 // Nome da imagem
-                String nomeArquivo = UUID.randomUUID().toString();
+               /* String nomeArquivo = UUID.randomUUID().toString();
                 StorageReference imagemRef = imagens.child(nomeArquivo + ".jpeg");
 
 
@@ -105,10 +123,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-
+*/
 
             }
         });
+
+
 
 //        DatabaseReference usuarios = reference.child("usuarios");
 
