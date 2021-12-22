@@ -46,4 +46,7 @@ dependencies {
 
     // Firebase RealTime database
     implementation 'com.google.firebase:firebase-database:11.0.4'
+
+    // Firebase Autenticação por email
+    implementation 'com.google.firebase:firebase-auth:11.0.4'
 }
