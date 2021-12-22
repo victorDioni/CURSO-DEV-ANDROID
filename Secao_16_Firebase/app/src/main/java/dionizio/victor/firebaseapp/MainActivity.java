@@ -3,8 +3,12 @@ package dionizio.victor.firebaseapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -17,6 +21,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.ByteArrayOutputStream;
+
 public class MainActivity extends AppCompatActivity {
 
     // Permite salvar dados no firebase
@@ -25,12 +31,41 @@ public class MainActivity extends AppCompatActivity {
     //Permite gerenciar usuarios
     private FirebaseAuth usuario = FirebaseAuth.getInstance();
 
+    private ImageView imgCelular;
+    private Button btnUpload;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DatabaseReference usuarios = reference.child("usuarios");
+        btnUpload = findViewById(R.id.btnUpload);
+        imgCelular = findViewById(R.id.imageViewCelular);
+
+        btnUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // Configura para imagem ser salva em memória
+                imgCelular.setDrawingCacheEnabled(true);
+                imgCelular.buildDrawingCache();
+
+                //Recupera bitmap da imagem (imagem a ser carregada)
+                Bitmap bitmap = imgCelular.getDrawingCache();
+
+                // Comprimo bitmap para um formato png/jpeg
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 75, baos);
+
+                // Coverrte o baos para pixel brutos em uma matriz de bytes
+                // (dados da imagem)
+
+                byte[] dadosImagem = baos.toByteArray();
+
+            }
+        });
+
+//        DatabaseReference usuarios = reference.child("usuarios");
 
 //        DatabaseReference usuarioPesquisa = usuarios.child("-MrYkfWv77eMWHqhtvbO");
 //        Query usuarioPesquisa = usuarios.orderByChild("nome").equalTo("Victor");
@@ -49,24 +84,24 @@ public class MainActivity extends AppCompatActivity {
 //                                        .endAt(30);
 
         //Filtrar palavras
-        Query usuarioPesquisa = usuarios.orderByChild("nome")
-                                         .startAt("M")
-                                         .endAt("M");
+//        Query usuarioPesquisa = usuarios.orderByChild("nome")
+//                                         .startAt("M")
+//                                         .endAt("M");
 
 
-        usuarioPesquisa.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                Usuario dadosUsuario = snapshot.getValue(Usuario.class);
-//                Log.i("Dados usuarios", "nome: " + dadosUsuario.getNome());
-                Log.i("Dados usuarios", snapshot.getValue().toString());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//        usuarioPesquisa.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+////                Usuario dadosUsuario = snapshot.getValue(Usuario.class);
+////                Log.i("Dados usuarios", "nome: " + dadosUsuario.getNome());
+//                Log.i("Dados usuarios", snapshot.getValue().toString());
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
 
 
