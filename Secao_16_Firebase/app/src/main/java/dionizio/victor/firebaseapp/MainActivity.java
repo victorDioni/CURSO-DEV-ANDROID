@@ -35,7 +35,25 @@ public class MainActivity extends AppCompatActivity {
 //        DatabaseReference usuarioPesquisa = usuarios.child("-MrYkfWv77eMWHqhtvbO");
 //        Query usuarioPesquisa = usuarios.orderByChild("nome").equalTo("Victor");
 //        Query usuarioPesquisa = usuarios.orderByKey().limitToFirst(2);
-        Query usuarioPesquisa = usuarios.orderByKey().limitToLast(2);
+//        Query usuarioPesquisa = usuarios.orderByKey().limitToLast(2);
+
+        // Maior ou igual
+//        Query usuarioPesquisa = usuarios.orderByChild("idade").startAt(30);
+
+        // Menor ou igual
+//        Query usuarioPesquisa = usuarios.orderByChild("idade").endAt(30);
+
+        // Entre dois valores
+//        Query usuarioPesquisa = usuarios.orderByChild("idade")
+//                                        .startAt(18)
+//                                        .endAt(30);
+
+        //Filtrar palavras
+        Query usuarioPesquisa = usuarios.orderByChild("nome")
+                                         .startAt("M")
+                                         .endAt("M");
+
+
         usuarioPesquisa.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
