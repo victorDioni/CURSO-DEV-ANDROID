@@ -3,11 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_18_Organizze_clone/1 - Organizze/app/src/main/res/drawable/ic_cadeado_cinza.xml" value="0.2203125" />
+        <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_18_Organizze_clone/1 - Organizze/app/src/main/res/drawable/ic_email_cinza.xml" value="0.2203125" />
+        <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_18_Organizze_clone/1 - Organizze/app/src/main/res/drawable/ic_pessoa_cinza.xml" value="0.2203125" />
+        <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_18_Organizze_clone/1 - Organizze/app/src/main/res/layout/activity_cadastro.xml" value="0.33" />
+        <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_18_Organizze_clone/1 - Organizze/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_18_Organizze_clone/1 - Organizze/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_18_Organizze_clone/1 - Organizze/app/src/main/res/layout/intro_1.xml" value="0.33" />
         <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_18_Organizze_clone/1 - Organizze/app/src/main/res/layout/intro_2.xml" value="0.25" />
         <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_18_Organizze_clone/1 - Organizze/app/src/main/res/layout/intro_3.xml" value="0.20416666666666666" />
         <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_18_Organizze_clone/1 - Organizze/app/src/main/res/layout/intro_4.xml" value="0.20416666666666666" />
         <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_18_Organizze_clone/1 - Organizze/app/src/main/res/layout/intro_5.xml" value="0.20416666666666666" />
+        <entry key="..\:/Projects/CURSO-DEV-ANDROID/Secao_18_Organizze_clone/1 - Organizze/app/src/main/res/layout/intro_cadastro.xml" value="0.33" />
       </map>
     </option>
   </component>
