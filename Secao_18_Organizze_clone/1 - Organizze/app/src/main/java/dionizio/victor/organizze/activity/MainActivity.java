@@ -1,4 +1,4 @@
-package dionizio.victor.organizze;
+package dionizio.victor.organizze.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,7 @@ import android.view.View;
 import com.heinrichreimersoftware.materialintro.app.IntroActivity;
 import com.heinrichreimersoftware.materialintro.slide.FragmentSlide;
 
+import dionizio.victor.organizze.R;
 import dionizio.victor.organizze.activity.CadastroActivity;
 import dionizio.victor.organizze.activity.LoginActivity;
 
