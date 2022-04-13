@@ -19,4 +19,22 @@
     </style>
     <style name="Theme.Organizze.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.Organizze.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- Tema aplicado nas despesas! -->
+    <style name="despesaTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:colorPrimary">@color/colorPrimaryDespesa</item>
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDarkDespesa</item>
+        <item name="android:colorAccent">@color/colorAccentDespesa</item>
+    </style>
+
+    <!-- Tema aplicado nas receitas! -->
+    <style name="receitaTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:colorPrimary">@color/colorPrimaryReceita</item>
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDarkReceita</item>
+        <item name="android:colorAccent">@color/colorAccentReceita</item>
+    </style>
 </resources>

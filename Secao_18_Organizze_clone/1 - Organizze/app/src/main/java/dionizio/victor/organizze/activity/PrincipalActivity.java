@@ -1,5 +1,6 @@
 package dionizio.victor.organizze.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +38,14 @@ public class PrincipalActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+    }
+
+    public void adicionarDespesa(View view){
+        startActivity(new Intent(this, DespesasActivity.class));
+    }
+
+    public void adicionarReceita(View view){
+        startActivity(new Intent(this, ReceitasActivity.class));
     }
 
     @Override
