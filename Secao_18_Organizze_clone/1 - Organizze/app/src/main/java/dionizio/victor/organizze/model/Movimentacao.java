@@ -58,7 +58,7 @@ public class Movimentacao {
         this.valor = valor;
     }
 
-    public void salvarMovimentacaoDespesa(String dataEscolhida){
+    public void salvarMovimentacao(String dataEscolhida){
 
         FirebaseAuth auth = ConfiguracaoFirebase.getFirebaseAutenticacao();
 

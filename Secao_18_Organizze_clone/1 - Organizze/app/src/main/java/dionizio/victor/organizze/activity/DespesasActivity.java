@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.github.clans.fab.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -38,7 +37,7 @@ public class DespesasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_despesas);
 
-        campoValor  = findViewById(R.id.editValor);
+        campoValor  = findViewById(R.id.editValorReceita);
         campoData  = findViewById(R.id.editData);
         campoCategoria  = findViewById(R.id.editCategoria);
         campoDescricao  = findViewById(R.id.editDescricao);
@@ -70,7 +69,7 @@ public class DespesasActivity extends AppCompatActivity {
 
             atualizarDespesa(despesaAtualizada);
 
-            movimentacao.salvarMovimentacaoDespesa(data);
+            movimentacao.salvarMovimentacao(data);
         }
     }
 
