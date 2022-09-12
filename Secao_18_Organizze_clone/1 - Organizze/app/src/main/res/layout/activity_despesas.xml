@@ -86,7 +86,7 @@
             android:id="@+id/editDescricao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Valor" />
+            android:hint="Descrição" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -101,6 +101,7 @@
         android:src="@drawable/ic_verificar_bracno"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="salvarDespesa"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
