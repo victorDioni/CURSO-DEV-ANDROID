@@ -5,7 +5,7 @@ plugins {
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdk 31
+    compileSdk 32
 
     defaultConfig {
         applicationId "dionizio.victor.organizze"
@@ -57,4 +57,7 @@ dependencies {
 
     // FloatingActionButton
     implementation 'com.github.clans:fab:1.6.4'
+
+    // Material Calendar View
+    implementation 'com.prolificinteractive:material-calendarview:1.4.3'
 }
