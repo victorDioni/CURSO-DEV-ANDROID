@@ -15,6 +15,7 @@ import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,8 +42,11 @@ public class PrincipalActivity extends AppCompatActivity {
     private Double despesaTotal = 0.0;
     private Double receitaTotal = 0.0;
     private Double resumoUsuario = 0.0;
+
     private FirebaseAuth auth = ConfiguracaoFirebase.getFirebaseAutenticacao();
     private DatabaseReference firebaseRef = ConfiguracaoFirebase.getFirebaseDatabase();
+    private DatabaseReference usuarioRef;
+    private ValueEventListener valueEventListenerUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,17 +61,16 @@ public class PrincipalActivity extends AppCompatActivity {
         txtSaudacao = findViewById(R.id.txtSaudacao);
         calendarView = findViewById(R.id.calendarView);
         configurarCalendarView();
-        recuperarResumo();
-
     }
 
     public void recuperarResumo(){
         // Recuperando o id do usuario
         String emailUsuario = auth.getCurrentUser().getEmail();
         String idUsuario = Base64Custom.codificarBase64(emailUsuario);
-        DatabaseReference usuarioRef = firebaseRef.child("usuarios").child(idUsuario);
+        usuarioRef = firebaseRef.child("usuarios").child(idUsuario);
 
-        usuarioRef.addValueEventListener(new ValueEventListener() {
+        Log.i("Evento", "Evento foi adicionado!");
+        valueEventListenerUsuario = usuarioRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // Recuperando dados
@@ -86,8 +89,8 @@ public class PrincipalActivity extends AppCompatActivity {
                 DecimalFormat decimalFormat = new DecimalFormat("0.##");
                 String resultadoFormatado = decimalFormat.format(resumoUsuario);
 
-                txtSaudacao.setText("Olá " + usuario.getNome());
-                txtSaldo.setText(resultadoFormatado);
+                txtSaudacao.setText("Olá, " + usuario.getNome());
+                txtSaldo.setText("R$ " + resultadoFormatado);
 
             }
 
@@ -137,5 +140,18 @@ public class PrincipalActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        recuperarResumo();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        usuarioRef.removeEventListener(valueEventListenerUsuario);
+        Log.i("Evento", "Evento foi removido");
     }
 }
