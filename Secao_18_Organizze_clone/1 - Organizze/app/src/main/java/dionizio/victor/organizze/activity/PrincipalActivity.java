@@ -25,13 +25,19 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import dionizio.victor.organizze.R;
+import dionizio.victor.organizze.adapter.AdapterMovimentacao;
 import dionizio.victor.organizze.config.ConfiguracaoFirebase;
 import dionizio.victor.organizze.databinding.ActivityPrincipalBinding;
 import dionizio.victor.organizze.helper.Base64Custom;
+import dionizio.victor.organizze.model.Movimentacao;
 import dionizio.victor.organizze.model.Usuario;
 
 public class PrincipalActivity extends AppCompatActivity {
@@ -48,6 +54,10 @@ public class PrincipalActivity extends AppCompatActivity {
     private DatabaseReference usuarioRef;
     private ValueEventListener valueEventListenerUsuario;
 
+    private RecyclerView recyclerView;
+    private AdapterMovimentacao adapterMovimentacao;
+    private List<Movimentacao> movimentacoes = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +70,17 @@ public class PrincipalActivity extends AppCompatActivity {
         txtSaldo = findViewById(R.id.txtSaldo);
         txtSaudacao = findViewById(R.id.txtSaudacao);
         calendarView = findViewById(R.id.calendarView);
+        recyclerView = findViewById(R.id.recyclerMovimentos);
         configurarCalendarView();
+
+        //Configurar adapter
+        adapterMovimentacao = new AdapterMovimentacao(movimentacoes, this);
+
+        //Configurar RecyclerView
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(adapterMovimentacao);
     }
 
     public void recuperarResumo(){
