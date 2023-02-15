@@ -21,6 +21,14 @@ public class MainActivity extends AppCompatActivity {
         myThread.start();
     }
 
+    class MyRunnable implements Runnable{
+
+        @Override
+        public void run() {
+
+        }
+    }
+
     class MyThread extends Thread{
         // Parar executar e criar uma thread utilizar o método run
         @Override
