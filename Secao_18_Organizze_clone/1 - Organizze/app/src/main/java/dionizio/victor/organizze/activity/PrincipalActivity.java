@@ -1,5 +1,6 @@
 package dionizio.victor.organizze.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.snackbar.Snackbar;
@@ -13,6 +14,7 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
@@ -20,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -62,6 +65,8 @@ public class PrincipalActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AdapterMovimentacao adapterMovimentacao;
     private List<Movimentacao> movimentacoes = new ArrayList<>();
+
+    private Movimentacao movimentacao;
 
     private String mesAnoSelecionado;
 
@@ -110,13 +115,88 @@ public class PrincipalActivity extends AppCompatActivity {
 
             @Override //Chamado quando o item é arrastado
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-
+                // Com o viewHolder é possivel recuperar a posicao do item da lista
+                excluirMovimentacao(viewHolder);
             }
         };
 
         // Anexando o objeto ItemTouch ao recyclerView
 
         new ItemTouchHelper(itemTouch).attachToRecyclerView(recyclerView);
+    }
+
+    public void excluirMovimentacao(RecyclerView.ViewHolder viewHolder){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+
+        //Configurando AlertDialog
+
+        alertDialog.setTitle("Excluir Movimentação da Conta");
+        alertDialog.setMessage("Você tem certeza que deseja realmente excluir essa movimentaçao da sua conta?");
+        alertDialog.setCancelable(false);
+
+        alertDialog.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // Recuperar a posicao do item deslizado
+                int position = viewHolder.getAdapterPosition();
+
+                //Recuperando o item deslizado;
+                movimentacao = movimentacoes.get(position);
+
+                // Recuperando o id do usuario
+
+                String emailUsuario = auth.getCurrentUser().getEmail();
+                String idUsuario = Base64Custom.codificarBase64(emailUsuario);
+                movimentacaoRef = firebaseRef.child("movimentacao")
+                        .child(idUsuario).child(mesAnoSelecionado);
+
+                //Recuperando a chave da movimentacao e excluido ela
+
+                movimentacaoRef.child(movimentacao.getKey()).removeValue();
+
+                adapterMovimentacao.notifyItemRemoved(position);
+
+                atualizarSaldo();
+
+
+            }
+        });
+
+        alertDialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(PrincipalActivity.this,
+                        "Cancelado",
+                        Toast.LENGTH_SHORT).show();
+
+                // Faz o item arrastado voltar para lista normalmente
+                adapterMovimentacao.notifyDataSetChanged();
+            }
+        });
+
+        AlertDialog alert = alertDialog.create();
+        alert.show();
+
+    }
+
+    public void atualizarSaldo(){
+        // Recuperando o id do usuario
+
+        String emailUsuario = auth.getCurrentUser().getEmail();
+        String idUsuario = Base64Custom.codificarBase64(emailUsuario);
+        usuarioRef = firebaseRef.child("usuarios")
+                                     .child(idUsuario);
+
+        if (movimentacao.getTipo().equals("r")){
+            receitaTotal = receitaTotal - movimentacao.getValor();
+            usuarioRef.child("receitaTotal").setValue(receitaTotal);
+        }
+
+        if (movimentacao.getTipo().equals("d")){
+            despesaTotal = despesaTotal - movimentacao.getValor();
+            usuarioRef.child("despesaTotal").setValue(despesaTotal);
+        }
+
     }
 
     public void recuperarMovimentacoes(){
@@ -135,9 +215,12 @@ public class PrincipalActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 movimentacoes.clear();
 
+                //Dentro desse for tem tudo relacionado a movimentacao
+
                 //Recuperar todos os itens
                 for (DataSnapshot dados: dataSnapshot.getChildren()){
                     Movimentacao movimentacao = dados.getValue(Movimentacao.class);
+                    movimentacao.setKey(dados.getKey()); //Chave da movimentacao
                     movimentacoes.add(movimentacao);
 
                     Log.i("DadosRetorno", "dados: " + movimentacao.getCategoria());
