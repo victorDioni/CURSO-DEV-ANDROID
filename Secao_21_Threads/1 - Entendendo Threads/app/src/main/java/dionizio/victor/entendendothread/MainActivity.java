@@ -3,6 +3,7 @@ package dionizio.victor.entendendothread;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,9 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btnInicicar;
     private int numero;
+    private Handler handler = new Handler();
+    private boolean pararExecucao = false;
+    /* Ele permite enviar codigos para ser executado em uma Thread*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         //Inicializando a thread criada
 //        myThread.start();
 
+        pararExecucao = false;
         MyRunnable myRunnable = new MyRunnable();
         new Thread(myRunnable).start();
     }
@@ -35,13 +40,22 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void run() {
             for (int i = 0; i <= 15; i++){
+                if(pararExecucao)
+                    return ;
 
                 numero = i;
                 Log.d("Thread", "contador: " + i);
 
 
                 // Enviando comandos para Thread principal
-                runOnUiThread(new Runnable() {
+                /*runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        btnInicicar.setText("contador: " + numero);
+                    }
+                });*/
+
+                handler.post(new Runnable() {
                     @Override
                     public void run() {
                         btnInicicar.setText("contador: " + numero);
@@ -55,6 +69,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    public void pararThread(View view){
+        pararExecucao = true;
     }
 
     class MyThread extends Thread{
