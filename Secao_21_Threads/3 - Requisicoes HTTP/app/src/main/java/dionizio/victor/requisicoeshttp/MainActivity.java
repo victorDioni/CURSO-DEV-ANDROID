@@ -8,8 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 MyTask task = new MyTask();
                 String urlApi = "https://blockchain.info/ticker";
-                task.execute();
+                task.execute(urlApi);
             }
         });
     }
@@ -47,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
             String stringUrl = strings[0];
+            InputStream inputStream = null;
+            InputStreamReader inputStreamReader = null;
+            StringBuffer buffer = null;
 
             try {
                 URL url = new URL(stringUrl);
@@ -55,8 +60,22 @@ public class MainActivity extends AppCompatActivity {
                 // O tipo HttpURLConnection que nos permite recuperar os dados da requisicao
                 HttpURLConnection conexao = (HttpURLConnection) url.openConnection();
 
-                //recuperando os dados
-                InputStream inputStream = conexao.getInputStream();
+                //recuperando os dados em Bytes
+                inputStream = conexao.getInputStream();
+
+                //InputStreamReader lê os dados em Bytes e decodifica para caracteres
+                inputStreamReader = new InputStreamReader(inputStream);
+
+                // Objeto utilizado para fazer a leitura dos caracteres do objeto inputStreamReader
+                BufferedReader reader = new BufferedReader(inputStreamReader);
+                buffer = new StringBuffer();
+                String linha = "";
+
+
+
+                while((linha = reader.readLine()) != null){
+                    buffer.append(linha);
+                }
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -64,7 +83,8 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            return null;
+            //Recupera os dados em Bytes
+            return buffer.toString();
         }
 
         @Override
@@ -73,8 +93,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
+        protected void onPostExecute(String resultado) {
+            super.onPostExecute(resultado);
+            txtResultado.setText(resultado);
         }
     }
 }
