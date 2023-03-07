@@ -34,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 MyTask task = new MyTask();
                 String urlApi = "https://blockchain.info/ticker";
-                task.execute(urlApi);
+                String urlCep = "https://viacep.com.br/ws/01001000/json/ ";
+                task.execute(urlCep);
             }
         });
     }
