@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtResultado;
     private Retrofit retrofit;
     private List<Foto> listaFotos = new ArrayList<>();
+    private DataService service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +44,44 @@ public class MainActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
+        service = retrofit.create(DataService.class);
+
         btnRecuperar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 //                recupearCEPRetrofit();
 //                recupearListaRetrofit();
-                salvarPostagem();
+//                salvarPostagem(); -> Método post
+                atualizarPostagem();
+
+            }
+        });
+    }
+
+    private void atualizarPostagem(){
+        //Configura objeto postagem
+        Postagem postagem = new Postagem(
+                "1234", null, "Corpo postagem");
+
+        Call<Postagem> call = service.atualizarPostagem(2, postagem);
+        call.enqueue(new Callback<Postagem>() {
+            @Override
+            public void onResponse(Call<Postagem> call, Response<Postagem> response) {
+                if(response.isSuccessful()){
+                    Postagem postagemResposta = response.body();
+                    txtResultado.setText(
+                                    "Status code: " + response.code() +
+                                    " id: " + postagemResposta.getId() +
+                                    " userId: " + postagemResposta.getUserId() +
+                                    " titulo: " + postagemResposta.getTitle() +
+                                    " body: " + postagemResposta.getBody()
+                    );
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Postagem> call, Throwable t) {
 
             }
         });
@@ -61,9 +93,6 @@ public class MainActivity extends AppCompatActivity {
         Postagem postagem = new Postagem(
                 "1234", "Titulo postagem!", "Corpo postagem");
 
-
-        // Configuração do Retrofit
-        DataService service = retrofit.create(DataService.class);
 
         // Recupera o serviço e salva postagem
         Call<Postagem> call = service.salvarPostagem(postagem);
