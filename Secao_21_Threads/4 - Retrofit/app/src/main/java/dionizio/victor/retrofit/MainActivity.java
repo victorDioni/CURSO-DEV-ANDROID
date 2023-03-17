@@ -53,7 +53,27 @@ public class MainActivity extends AppCompatActivity {
 //                recupearCEPRetrofit();
 //                recupearListaRetrofit();
 //                salvarPostagem(); -> Método post
-                atualizarPostagem();
+//                atualizarPostagem();
+                removerPostagem();
+
+            }
+        });
+    }
+
+    private void removerPostagem(){
+        Call<Void> call = service.removerPostagem(2);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccessful()){
+                    txtResultado.setText(
+                            "Status code: " + response.code()
+                    );
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
 
             }
         });

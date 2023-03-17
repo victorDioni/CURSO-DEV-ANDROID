@@ -6,6 +6,7 @@ import dionizio.victor.retrofit.model.Foto;
 import dionizio.victor.retrofit.model.Postagem;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -40,4 +41,7 @@ public interface DataService {
 
     @PATCH("/posts/{id}") // Patch só atualiza os campos que vc enviar
     Call<Postagem> atualizarPostagemPatch(@Path("id") int id, @Body Postagem postagem);
+
+    @DELETE("/posts/{id}")
+    Call<Void> removerPostagem(@Path("id") int id);
 }
