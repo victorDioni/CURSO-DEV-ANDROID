@@ -15,6 +15,7 @@ import dionizio.victor.retrofit.api.CEPService;
 import dionizio.victor.retrofit.api.DataService;
 import dionizio.victor.retrofit.model.CEP;
 import dionizio.victor.retrofit.model.Foto;
+import dionizio.victor.retrofit.model.Postagem;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,10 +48,45 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 //                recupearCEPRetrofit();
-                recupearListaRetrofit();
+//                recupearListaRetrofit();
+                salvarPostagem();
 
             }
         });
+    }
+
+    private void salvarPostagem(){
+
+        //Configura objeto postagem
+        Postagem postagem = new Postagem(
+                "1234", "Titulo postagem!", "Corpo postagem");
+
+
+        // Configuração do Retrofit
+        DataService service = retrofit.create(DataService.class);
+
+        // Recupera o serviço e salva postagem
+        Call<Postagem> call = service.salvarPostagem(postagem);
+
+        call.enqueue(new Callback<Postagem>() {
+            @Override
+            public void onResponse(Call<Postagem> call, Response<Postagem> response) {
+                if(response.isSuccessful()){
+                    Postagem postagemResposta = response.body();
+                    txtResultado.setText(
+                            "Código: " + response.code() +
+                            " id: " + postagemResposta.getId() +
+                            " titulo: " + postagemResposta.getTitle()
+                    );
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Postagem> call, Throwable t) {
+
+            }
+        });
+
     }
 
     private void recupearListaRetrofit(){
