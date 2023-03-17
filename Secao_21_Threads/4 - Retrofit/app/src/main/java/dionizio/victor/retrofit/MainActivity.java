@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         Postagem postagem = new Postagem(
                 "1234", null, "Corpo postagem");
 
-        Call<Postagem> call = service.atualizarPostagem(2, postagem);
+        Call<Postagem> call = service.atualizarPostagemPatch(2, postagem);
         call.enqueue(new Callback<Postagem>() {
             @Override
             public void onResponse(Call<Postagem> call, Response<Postagem> response) {
